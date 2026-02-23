@@ -12,10 +12,9 @@ const rejectTrackerBtn = document.getElementById("reject-tracker-btn")
 
 
 const allcardsSection = document.getElementById("all-cards");
-
-//interviewList.push({name:"job 1"},{name:"job 1"})
 const mainContainer = document.querySelector("main");
-console.log(mainContainer);
+//console.log(mainContainer);
+const filterSection = document.getElementById("filtered-section");
 //const allTrackerBtn = document.getElementById("all-tracker-btn");
 //allTrackerBtn.addEventListener("click", function(){
 //    alert("Clicked from add even")
@@ -52,14 +51,58 @@ function togglestyle(id){
 
 //main part cards
 mainContainer.addEventListener("click", function(event){
-    const parentNode = event.target.parentNode.parentNode;
+    console.log(event.target.classList.contains("interview-btn"));
+    if(event.target.classList.contains("interview-btn")){
+        const parentNode = event.target.parentNode.parentNode;
     const companyName = parentNode.querySelector(".companyName").innerText;
     const positionName = parentNode.querySelector(".positionName").innerText;
     const salery = parentNode.querySelector(".salery").innerText;
+    const status = parentNode.querySelector(".status").innerText;
+    const description = parentNode.querySelector(".description").innerText;
+    //console.log(companyName, positionName, salery, status, description); 
+    const cardInfo = {
+        companyName,
+        positionName,
+        salery,
+        status,
+        description
+    }
+    //console.log(cardInfo)
+    const companyExist = interviewList.find(item=> item.companyName == cardInfo.companyName)
+    if(!companyExist){
+        interviewList.push(cardInfo)
+    }
+    renderInterview()
+    //console.log(interviewList);
 
-
-    console.log(companyName);
+    }
 })
+
+function renderInterview (){
+   filterSection.innerHTML = ""
+   for(let interview of interviewList){
+    console.log(interview);
+    let div = document.createElement("div");
+    div.className = "mx-40 py-5 flex justify-between bg-gray-200"
+    div.innerHTML = ` <div class="py-4 mx-3">
+            <h2 class="companyName font-bold text-xl">Mobile first corp</h2>
+            <p class="positionName">React Native Develloper</p>
+            <p class="salery">Remote . Full-Time . $130,000-$175,000</p>
+            <div>
+                <div class="status badge badge-secondary py-2">Not Applied</div>
+            <p class="description">Build-cross platform mobile applications using React native. Work on products used by milions of users worldwide.</p>
+            </div>
+            <div class="py-4">
+            <button class="btn">Interview</button>
+            <button class="btn">Rejected</button>
+            </div>
+        </div>
+        <div class="btn rounded-full">
+    <i class="fa-regular fa-trash-can"></i>
+      </div>
+    `
+   }
+}
 
 
 
