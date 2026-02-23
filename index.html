@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Application Tracker</title>
     <!-- tailwind+daisy -->
      <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -20,15 +20,15 @@
         <div class="grid grid-cols-3 gap-6 py-5">
             <div class="bg-slate-200 rounded-xl text-center">
             <p>Total</p>
-            <p>8</p>
+            <p id="total">0</p>
         </div>
         <div class="bg-slate-200 rounded-xl text-center">
             <p>Interview</p>
-            <p>0</p>
+            <p id="interview">0</p>
         </div>
         <div class="bg-slate-200 rounded-xl text-center">
             <p>Rejected</p>
-            <p>0</p>
+            <p id="reject">0</p>
         </div>
         </div>
     </div>
@@ -37,22 +37,24 @@
         <h2 class="font-bold text-xl">Available Jobs</h2>
         <p>8 Jobs</p>
     </div>
+    </header>
     <!--buttons-->
-    <div class="mx-40">
-        <button class="btn">All</button>
-        <button class="btn">Interview</button>
-        <button class="btn">Rejected</button>
+    <main>
+        <div class="mx-40">
+        <button onclick="togglestyle('all-tracker-btn')" id="all-tracker-btn" class="btn bg-blue-500 text-white">All</button>
+        <button onclick="togglestyle('interview-tracker-btn')" id="interview-tracker-btn" class="btn bg-blue-500 text-white">Interview</button>
+        <button onclick="togglestyle('reject-tracker-btn')" id="reject-tracker-btn" class="btn bg-blue-500 text-white">Rejected</button>
 
     </div>
-</header>
 <!--cards-->
-<section class="pt-10">
+<section id="all-cards">
+    <div class="pt-10">
     <!--card 1-->
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
-            <h2 class="font-bold text-xl">Mobile first corp</h2>
-            <p>React Native Develloper</p>
-            <p>Remote . Full-Time . $130,000-$175,000</p>
+            <h2 class="companyName font-bold text-xl">Mobile first corp</h2>
+            <p class="positionName">React Native Develloper</p>
+            <p class="salery">Remote . Full-Time . $130,000-$175,000</p>
             <div>
                 <div class="badge badge-secondary py-2">Not Applied</div>
             <p>Build-cross platform mobile applications using React native. Work on products used by milions of users worldwide.</p>
@@ -66,9 +68,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+</div>
     <!--card 2-->
-    <section class="pt-10">
+    <div class="pt-10">
     <div class="mx-40 pt-10 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">WebFlow Agency</h2>
@@ -87,9 +89,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+    </div>
     <!--card 3-->
-<section class="pt-10">
+<div class="pt-10">
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">DataViz Solutions</h2>
@@ -108,9 +110,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+</div>
     <!--card 4-->
-    <section class="pt-10">
+    <div class="pt-10">
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">CloudFirst Inc</h2>
@@ -129,9 +131,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+    </div>
     <!--card 5-->
-    <section class="pt-10">
+    <div class="pt-10">
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">Innovation Labs</h2>
@@ -150,9 +152,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+    </div>
     <!--card 6-->
-    <section class="pt-10">
+    <div class="pt-10">
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">MegaCorp Solutions</h2>
@@ -171,9 +173,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+    </div>
     <!--card 7-->
-    <section class="pt-10">
+    <div class="pt-10">
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">StartUpXYZ</h2>
@@ -192,9 +194,9 @@
     <i class="fa-regular fa-trash-can"></i>
       </div>
     </div>
-    </section>
+    </div>
     <!--card 8-->
-    <section class="pt-10">
+    <div class="pt-10">
     <div class="mx-40 py-5 flex justify-between bg-gray-200">
         <div class="py-4 mx-3">
             <h2 class="font-bold text-xl">Tech-Corp Industries</h2>
@@ -214,9 +216,10 @@
       </div>
     </div>
 
+    </div>
+
 </section>
-
-
-    <i class="fa-regular fa-trash-can"></i>
+</main>
+<script src="script.js"></script>
 </body>
 </html>
