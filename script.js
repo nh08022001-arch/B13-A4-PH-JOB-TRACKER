@@ -52,7 +52,9 @@ function togglestyle(id){
     }else if(id == "all-tracker-btn"){
         allcardsSection.classList.remove("hidden");
         filterSection.classList.add("hidden");
-
+    }else if(id == "reject-tracker-btn"){
+        allcardsSection.classList.add("hidden");
+        filterSection.classList.remove("hidden");
 
     }
 }
@@ -62,14 +64,15 @@ function togglestyle(id){
 mainContainer.addEventListener("click", function(event){
     const parentNode = event.target.parentNode.parentNode;
     console.log(event.target.classList.contains("interview-btn"));
-        if(event.target.classList.contains("interview-btn")){
-        const parentNode = event.target.parentNode.parentNode;
+    //interview
+    if(event.target.classList.contains("interview-btn")){
+    const parentNode = event.target.parentNode.parentNode;
+
     const companyName = parentNode.querySelector(".companyName").innerText;
     const positionName = parentNode.querySelector(".positionName").innerText;
     const salery = parentNode.querySelector(".salery").innerText;
     const status = parentNode.querySelector(".status").innerText;
-    const description = parentNode.querySelector(".description").innerText;
-    //console.log(companyName, positionName, salery, status, description); 
+    const description = parentNode.querySelector(".description").innerText; 
     parentNode.querySelector(".status").innerText = "interviewd"
     const cardInfo = {
         companyName,
@@ -84,12 +87,39 @@ mainContainer.addEventListener("click", function(event){
     if(!companyExist){
         interviewList.push(cardInfo)
     }
+    calculatCount()
     renderInterview()
+    //console.log(interviewList);
+
+    }else if(event.target.classList.contains("reject-btn")){
+    const parentNode = event.target.parentNode.parentNode;
+
+    const companyName = parentNode.querySelector(".companyName").innerText;
+    const positionName = parentNode.querySelector(".positionName").innerText;
+    const salery = parentNode.querySelector(".salery").innerText;
+    const status = parentNode.querySelector(".status").innerText;
+    const description = parentNode.querySelector(".description").innerText; 
+    parentNode.querySelector(".status").innerText = "Reject"
+    const cardInfo = {
+        companyName,
+        positionName,
+        salery,
+        status:"Reject",
+        description
+    }
+    //console.log(cardInfo)
+    const companyExist = rejectList.find(item=> item.companyName == cardInfo.companyName)
+    
+    if(!companyExist){
+        rejectList.push(cardInfo)
+    }
+    calculatCount()
+    renderReject()
     //console.log(interviewList);
 
     }
 })
-
+//interview
 function renderInterview (){
    filterSection.innerHTML = ""
    for(let interview of interviewList){
@@ -103,6 +133,33 @@ function renderInterview (){
             <div>
                 <div class="status badge badge-secondary py-2">${interview.status}</div>
             <p class="description">${interview.description}</p>
+            </div>
+            <div class="py-4">
+            <button class="btn">Interview</button>
+            <button class="btn">Rejected</button>
+            </div>
+        </div>
+        <div class="btn rounded-full">
+    <i class="fa-regular fa-trash-can"></i>
+      </div>
+    `
+    filterSection.appendChild(div)
+   }
+}
+//reject
+function renderReject (){
+   filterSection.innerHTML = ""
+   for(let reject of rejectList){
+    console.log(reject);
+    let div = document.createElement("div");
+    div.className = "mx-40 py-5 flex justify-between bg-gray-200"
+    div.innerHTML = ` <div class="py-4 mx-3">
+            <h2 class="companyName font-bold text-xl">${reject.companyName}</h2>
+            <p class="positionName">${reject.positionName}</p>
+            <p class="salery">${reject.salery}</p>
+            <div>
+                <div class="status badge badge-secondary py-2">${reject.status}</div>
+            <p class="description">${reject.description}</p>
             </div>
             <div class="py-4">
             <button class="btn">Interview</button>
