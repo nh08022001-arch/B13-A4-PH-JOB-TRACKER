@@ -12,7 +12,10 @@ const rejectTrackerBtn = document.getElementById("reject-tracker-btn")
 
 
 const allcardsSection = document.getElementById("all-cards");
+
+//interviewList.push({name:"job 1"},{name:"job 1"})
 const mainContainer = document.querySelector("main");
+console.log(mainContainer);
 //console.log(mainContainer);
 const filterSection = document.getElementById("filtered-section");
 //const allTrackerBtn = document.getElementById("all-tracker-btn");
@@ -53,11 +56,14 @@ function togglestyle(id){
 mainContainer.addEventListener("click", function(event){
     const parentNode = event.target.parentNode.parentNode;
     console.log(event.target.classList.contains("interview-btn"));
-        if(event.target.classList.contains("interview-btn")){
+    if(event.target.classList.contains("interview-btn")){
         const parentNode = event.target.parentNode.parentNode;
     const companyName = parentNode.querySelector(".companyName").innerText;
     const positionName = parentNode.querySelector(".positionName").innerText;
     const salery = parentNode.querySelector(".salery").innerText;
+
+
+    console.log(companyName);
     const status = parentNode.querySelector(".status").innerText;
     const description = parentNode.querySelector(".description").innerText;
     //console.log(companyName, positionName, salery, status, description); 
@@ -104,6 +110,3 @@ function renderInterview (){
     `
    }
 }
-
-
-
