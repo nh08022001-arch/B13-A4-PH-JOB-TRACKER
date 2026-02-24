@@ -46,6 +46,15 @@ function togglestyle(id){
 //for current btn
     selected.classList.remove("bg-gray-300", "text-black");
     selected.classList.add("bg-blue", "text-white");
+    if(id == "interview-tracker-btn"){
+        allcardsSection.classList.add("hidden");
+        filterSection.classList.remove("hidden");
+    }else if(id == "all-tracker-btn"){
+        allcardsSection.classList.remove("hidden");
+        filterSection.classList.add("hidden");
+
+
+    }
 }
 //toggoling close
 
@@ -61,16 +70,17 @@ mainContainer.addEventListener("click", function(event){
     const status = parentNode.querySelector(".status").innerText;
     const description = parentNode.querySelector(".description").innerText;
     //console.log(companyName, positionName, salery, status, description); 
+    parentNode.querySelector(".status").innerText = "interviewd"
     const cardInfo = {
         companyName,
         positionName,
         salery,
-        status,
+        status:"interview",
         description
     }
     //console.log(cardInfo)
     const companyExist = interviewList.find(item=> item.companyName == cardInfo.companyName)
-    parentNode.querySelector(".status").innerText = "interviewd"
+    
     if(!companyExist){
         interviewList.push(cardInfo)
     }
@@ -87,12 +97,12 @@ function renderInterview (){
     let div = document.createElement("div");
     div.className = "mx-40 py-5 flex justify-between bg-gray-200"
     div.innerHTML = ` <div class="py-4 mx-3">
-            <h2 class="companyName font-bold text-xl">Mobile first corp</h2>
-            <p class="positionName">React Native Develloper</p>
-            <p class="salery">Remote . Full-Time . $130,000-$175,000</p>
+            <h2 class="companyName font-bold text-xl">${interview.companyName}</h2>
+            <p class="positionName">${interview.positionName}</p>
+            <p class="salery">${interview.salery}</p>
             <div>
-                <div class="status badge badge-secondary py-2">Not Applied</div>
-            <p class="description">Build-cross platform mobile applications using React native. Work on products used by milions of users worldwide.</p>
+                <div class="status badge badge-secondary py-2">${interview.status}</div>
+            <p class="description">${interview.description}</p>
             </div>
             <div class="py-4">
             <button class="btn">Interview</button>
