@@ -87,11 +87,14 @@ mainContainer.addEventListener("click", function(event){
     if(!companyExist){
         interviewList.push(cardInfo)
     }
+    //interviewList = interviewList.filter(item=> item.companyName != cardInfo.companyName)
     calculatCount()
     renderInterview()
     //console.log(interviewList);
 
-    }else if(event.target.classList.contains("reject-btn")){
+    }
+    //reject
+    else if(event.target.classList.contains("reject-btn")){
     const parentNode = event.target.parentNode.parentNode;
 
     const companyName = parentNode.querySelector(".companyName").innerText;
@@ -112,6 +115,8 @@ mainContainer.addEventListener("click", function(event){
     
     if(!companyExist){
         rejectList.push(cardInfo)
+    }else{
+        rejectList = rejectList.filter(item => item.companyName !== cardInfo.companyName);
     }
     calculatCount()
     renderReject()
