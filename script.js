@@ -70,6 +70,7 @@ mainContainer.addEventListener("click", function(event){
     }
     //console.log(cardInfo)
     const companyExist = interviewList.find(item=> item.companyName == cardInfo.companyName)
+    parentNode.querySelector(".status").innerText = "interviewd"
     if(!companyExist){
         interviewList.push(cardInfo)
     }
@@ -102,6 +103,7 @@ function renderInterview (){
     <i class="fa-regular fa-trash-can"></i>
       </div>
     `
+    filterSection.appendChild(div)
    }
 }
 
